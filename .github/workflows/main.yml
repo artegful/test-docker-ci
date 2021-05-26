@@ -1,8 +1,10 @@
-name: CI to Docker Hub
+name: Noty CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - master
+      - dev
 
 jobs:
 
@@ -41,5 +43,5 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         
-      - name: Post prod to Dockerhub
-        run: docker-compose -f docker-compose.prod.yml push
+      - name: Send prod to Dockerhub
+        run: docker-compose -f ./docker-compose.prod.yml push
